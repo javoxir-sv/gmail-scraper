@@ -96,7 +96,6 @@ def collect_mails(service, query):
     print(".\n.\n.")
     print("Fetching all emails...")
 
-    # Fetching each messages
     bar = loadbar.LoadBar(max=len(messages))
     bar.start()
     for step, msg in enumerate(messages):
@@ -164,19 +163,16 @@ def collect(token_path, creds_path, output_path, port, query):
     start = time.time()
     creds = None
 
-    # Check if existing token is available
     if token_path and os.path.exists(token_path):
         creds = Credentials.from_authorized_user_file(str(token_path), SCOPES)
         print("Existing token loaded successfully.")
 
-    # If no valid token, authenticate via credentials.json
     if not creds or not creds.valid:
         if creds_path and os.path.exists(creds_path):
             flow = InstalledAppFlow.from_client_secrets_file(
                 str(creds_path), SCOPES)
             creds = flow.run_local_server(port=port)
 
-            # Save the new token
             save_path = os.path.join(os.path.dirname(creds_path), "token.json")
             with open(save_path, "w") as token_file:
                 token_file.write(creds.to_json())
