@@ -8,7 +8,14 @@ def main():
         prog="scrap.py",
         description="Scrapes the sh*t out of your gmail.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
-        epilog="For detailed setup instructions, refer to the project README.md",
+        epilog="""
+        gmail-scraper is a nice Python-based utility designed for data extraction and automation within your Gmail inbox. Provides `--query` option which supports full Gmail search query syntax for targeted data collection.
+        This tool uses OAuth 2.0 for accessing Google Cloud. Since I wrote the script for gathering data to train a model, I labeled the spam messages as "SPAM" and legit ones as "BEEF". Why beef? I looked around and in all the datasets legitimate messages were labeled as "HAM", so I thought - why not beef?
+        But it is still keeps the original labels as a backup, under `labels` key in the output/JSON file.
+
+
+        CATCH: I still haven't figured out a way to decode/clean up the messages with better quality. Messages come base64 encoded, also full of urls and stuff.
+        """,
     )
 
     parser.add_argument(
@@ -41,7 +48,7 @@ def main():
         "-q",
         "--query",
         default="newer_than:1d",
-        help="Gmail search query string. See: https://support.google.com/mail/answer/7190",
+        help='Gmail search query string. See: https://ashababnoor.github.io/cheatsheets/gmail-search-syntax. For selecting all the messages use: -q "is:anywhere" or just leave it empty -q "".',
     )
 
     args = parser.parse_args()
