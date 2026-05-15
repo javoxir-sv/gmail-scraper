@@ -11,8 +11,8 @@ Spam messages are labeled as "SPAM", legit ones are "BEEF". Why beef? I looked a
 But it still keeps the original labels as a backup, under `labels` key in the output/JSON file.<br>
 
 
-CATCH: I still haven't figured out a way to decode/clean up the messages with better quality. Messages come base64 encoded, also full of urls and stuff.
-If you have better ideas please feel free to open Issue.
+CATCH: I still haven't figured out a way to decode/clean up the messages with better quality. Messages come base64 encoded, also full of urls and stuff.<br>
+If you have a better idea or you see bugs, please feel free to open Issue.
 
 
 ## Requirements
@@ -80,6 +80,5 @@ Outputs a JSON array of objects with the following schema:
 
 
 ## License
-<hr>
 Licensed under the MIT, the tool is yours, use and abuse it.<br>
 Also, contributions are welcome!
