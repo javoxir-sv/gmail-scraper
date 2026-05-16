@@ -58,7 +58,7 @@ python main.py -c path/to/credentials.json -o dataset.json -q "category:primary"
 ```
 
 - Seach Queries
-    * The `-q` argument supports all standard Gmail search operators. For more details, refer to the <a href="https://ashababnoor.github.io/cheatsheets/gmail-search-syntax">Gmail Search Documentation</a>.
+    * The `-q` argument supports all standard Gmail search operators. For more details, refer to the <a href="https://ashababnoor.github.io/cheatsheets/gmail-search-syntax">Gmail Search Cheatsheets</a>.
     * default: `newer_than:1d`. For selecting all the messages use: `-q "is:anywhere"` or just leave it empty: `-q ""`.
 
 ## Data Structure
