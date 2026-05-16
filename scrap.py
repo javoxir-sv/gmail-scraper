@@ -6,15 +6,13 @@ from scraper.scraper import collect
 def main():
     parser = argparse.ArgumentParser(
         prog="scrap.py",
-        description="Scrapes the sh*t out of your gmail.",
+        description="Scrapes the `sweet` out of your gmail.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
         epilog="""
         gmail-scraper is a nice Python-based utility designed for data extraction and automation within your Gmail inbox. Provides `--query` option which supports full Gmail search query syntax for targeted data collection.
-        This tool uses OAuth 2.0 for accessing Google Cloud. Spam messages are labeled as "SPAM", legit ones are "BEEF". Why beef? I looked around, in all the datasets legitimate messages were labeled as "HAM", so I thought - why not beef?
+        This tool uses OAuth 2.0 for accessing Google Cloud. Spam messages are labeled as "SPAM", legit ones are "BEEF".
         But it still keeps the original labels as a backup, under `labels` key in the output/JSON file.
 
-
-        CATCH: I still haven't figured out a way to decode/clean up the messages with better quality. Messages come base64 encoded, also full of urls and stuff.
         """,
     )
 

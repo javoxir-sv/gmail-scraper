@@ -10,7 +10,6 @@ This tool uses <a href="https://datatracker.ietf.org/doc/html/rfc6749">OAuth 2.0
 Spam messages are labeled as "SPAM", legit ones are "BEEF". Why beef? I looked around, in all the datasets legitimate messages were labeled as "HAM", so I thought - why not beef?<br>
 But it still keeps the original labels as a backup, under `labels` key in the output/JSON file.<br>
 
-
 CATCH: I still haven't figured out a way to decode/clean up the messages with better quality. Messages come base64 encoded, also full of urls and stuff.<br>
 If you have a better idea or you see bugs, please feel free to open Issue.
 
@@ -78,6 +77,7 @@ Outputs a JSON array of objects with the following schema:
 2. <strong>Body Extraction:</strong> The script specifically targets text/plain parts of emails to avoid HTML noise. But sometimes there'll be more complex parts where it don't have a backup plan for so it skips them - TODO.
 3. <strong>Cleaning:</strong> URLs are stripped using regex, and formatting characters like * are removed to ensure better quality data.
 
+- TODO: Custom labeling for spam/beef(ham) emails.
 
 ## License
 Licensed under the MIT, the tool is yours, use and abuse it.<br>
