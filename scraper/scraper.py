@@ -56,8 +56,7 @@ def decode_message(messages):
         else:
             label = "BEEF"
 
-        good_messages.append(
-            {"messages": message, "labels": labels, "label": label})
+        good_messages.append({"messages": message, "labels": labels, "label": label})
         bar.update(step=step)
     bar.end()
     return good_messages
@@ -112,53 +111,6 @@ def collect_mails(service, query):
     return full_format
 
 
-def collect2(token_path, creds_path, output_path, port, query):
-    start = time.time()
-    creds = None
-    if token_path is not None:
-        creds = Credentials.from_authorized_user_file(token_path, SCOPES)
-        print("Credentials loaded successfully...")
-    elif not creds and creds_path is not None:
-        flow = InstalledAppFlow.from_client_secrets_file(creds_path, SCOPES)
-        creds = flow.run_local_server(port=port)
-        print("Authorized successfully...")
-        path = os.path.join(os.path.dirname(creds_path), "token.json")
-        with open(path, "w") as token:
-            token.write(creds.to_json())
-            token.close()
-        print(
-            "New token saved to:",
-            path,
-            "\n"
-            "You can use the token next time [-t path/to/token.json], but expires at ~1 hour.",
-        )
-
-    else:
-        print(
-            "Credentials are not given. Please use [-c path/to/creds.json] or [-t path/to/token.json]"
-        )
-        return
-
-    service = build("gmail", "v1", credentials=creds)
-    print("Service built successfully...")
-
-    messages = collect_mails(service, query)
-    decoded_messages = decode_message(messages)
-    if output_path is not None:
-        with open(output_path, "w") as f:
-            json.dump(decoded_messages, f)
-            f.close()
-        print("Results saved to:", output_path)
-    else:
-        pp.pprint(decoded_messages)
-
-    runtime = time.time() - start
-    print("Finished.")
-    print(f"Total runtime: {runtime:.2f} seconds. a.k.a ~{
-          (runtime / 60):.2f} minutes.")
-    service.close()
-
-
 def collect(token_path, creds_path, output_path, port, query):
     start = time.time()
     creds = None
@@ -169,8 +121,7 @@ def collect(token_path, creds_path, output_path, port, query):
 
     if not creds or not creds.valid:
         if creds_path and os.path.exists(creds_path):
-            flow = InstalledAppFlow.from_client_secrets_file(
-                str(creds_path), SCOPES)
+            flow = InstalledAppFlow.from_client_secrets_file(str(creds_path), SCOPES)
             creds = flow.run_local_server(port=port)
 
             save_path = os.path.join(os.path.dirname(creds_path), "token.json")
@@ -206,8 +157,7 @@ def collect(token_path, creds_path, output_path, port, query):
 
     runtime = time.time() - start
     print("Finished.")
-    print(f"Total runtime: {runtime:.2f} seconds. a.k.a ~{
-          (runtime / 60):.2f} minutes.")
+    print(f"Total runtime: {runtime:.2f} seconds. a.k.a ~{(runtime / 60):.2f} minutes.")
     if output_path is None:
         print(
             "\nTo save the output as a JSON file, use [-o/--o] option: [-o path/to/output.json]"
