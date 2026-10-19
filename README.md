@@ -61,7 +61,7 @@ python main.py -c path/to/credentials.json -o dataset.json -q "category:primary"
     * default: `newer_than:1d`. For selecting all the messages use: `-q "is:anywhere"` or just leave it empty: `-q ""`.
 
 ## Data Structure
-Outputs a JSON array of objects with the following schema:
+Outputs a JSON array of objects with the following scheme:
 ```
 [
   {
@@ -74,10 +74,9 @@ Outputs a JSON array of objects with the following schema:
 
 ### Internal Logic
 1. <strong>Authentication:</strong> If no token is provided via `-t`, the script uses the credentials provided via `-c` to open a browser for login. A `token.json` will be saved automatically in the same directory as your credentials, which can be used for the next requests - expires at ~1 hour, but the script itself can renew it.
-2. <strong>Body Extraction:</strong> The script specifically targets text/plain parts of emails to avoid HTML noise. But sometimes there'll be more complex parts where it don't have a backup plan for so it skips them - TODO.
+2. <strong>Body Extraction:</strong> The script specifically targets text/plain parts of emails to avoid HTML noise. But sometimes there'll be more complex parts where it doesn't have a backup plan for so it skips them.
 3. <strong>Cleaning:</strong> URLs are stripped using regex, and formatting characters like * are removed to ensure better quality data.
 
-- TODO: Custom labeling for spam/beef(ham) emails.
 
 ## License
 Licensed under the MIT, the tool is yours, use and abuse it.<br>
